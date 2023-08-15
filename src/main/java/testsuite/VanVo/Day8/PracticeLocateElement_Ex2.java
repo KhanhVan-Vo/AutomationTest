@@ -1,4 +1,4 @@
-package automation.testsuite.VanVo;
+package testsuite.VanVo.Day8;
 
 import automation.common.CommonBase;
 import org.openqa.selenium.By;

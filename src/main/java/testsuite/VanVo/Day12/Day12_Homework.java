@@ -21,6 +21,7 @@ public class Day12_Homework extends automation.common.CommonBase {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Assert.assertEquals("Arkansas", singleSelect.getFirstSelectedOption().getText());
     }
+
     @Test
     public void handCheckbox() {
         driver = initChromeDriver("http://demo.seleniumeasy.com/input-form-demo.html");
