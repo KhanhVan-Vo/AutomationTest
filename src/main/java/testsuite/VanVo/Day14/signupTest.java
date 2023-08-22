@@ -16,9 +16,9 @@ public class signupTest extends automation.common.CommonBase {
     @Test
     public void signupSuccessfully() {
         SignupFactory factory = new SignupFactory(driver);
-        factory.SignupFunction("Demoname", "Demoemail1122432@gmail.com", "123456@", "0912344484");
-        pause(4000);
+        factory.SignupFunction("Demoname", "Demoemail9273071@gmail.com", "123456@", "0912344484");
         danhSachKhoaHoc dskh = new danhSachKhoaHoc();
+        pause(20000);
         WebElement expected = driver.findElement(dskh.textThongBao);
         assertTrue(expected.isDisplayed());
     }

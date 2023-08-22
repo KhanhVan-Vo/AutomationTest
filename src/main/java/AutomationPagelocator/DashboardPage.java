@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 
 public class DashboardPage extends automation.common.CommonBase {
+    public By clientLink = By.xpath("//*[@id=\"sidebar-menu\"]/li[3]/a");
 
     public By dashboardText = By.xpath("//span[text()='Dashboard']");
     public By buttonUser = By.xpath("//a[@id='user-dropdown']");
