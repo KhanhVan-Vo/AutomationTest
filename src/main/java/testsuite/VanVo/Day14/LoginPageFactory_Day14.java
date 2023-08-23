@@ -21,11 +21,12 @@ public class LoginPageFactory_Day14 {
         PageFactory.initElements(driver, this);
     }
 
-    public void LoginFunction(String email, String password){
+    public void LoginFunction(String email, String password) throws InterruptedException {
         txtemail.clear();
         txtemail.sendKeys(email);
         txtpassword.clear();
         txtpassword.sendKeys(password);
+        Thread.sleep(4000);
         buttonLogin.click();
     }
 }

@@ -12,11 +12,12 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginTestFactory extends automation.common.CommonBase {
     @BeforeTest
-    public void openApplication(){
+    public void openApplication() {
         driver = initChromeDriver(AccountConstant.webURL);
     }
+
     @Test
-    public void loginSuccessfully() {
+    public void loginSuccessfully() throws InterruptedException {
         LoginPageFactory_Day14 page = new LoginPageFactory_Day14(driver);
         page.LoginFunction("admin@demo.com", "riseDemo");
         pause(4000);
@@ -26,8 +27,9 @@ public class LoginTestFactory extends automation.common.CommonBase {
         assertTrue(expected.isDisplayed());
 
     }
+
     @AfterTest
-    public void quitDriver(){
+    public void quitDriver() {
         driver.close();
     }
 }

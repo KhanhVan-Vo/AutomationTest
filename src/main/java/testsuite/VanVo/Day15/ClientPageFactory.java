@@ -16,39 +16,42 @@ public class ClientPageFactory {
     @FindBy(xpath = "//label[text()='Person']")
     private WebElement checkboxPerson;
     @FindBy(xpath = "//input[@name='company_name']")
-    private WebElement textCompanyName;
-    //gia tri cua tung Owner trong man Add client
-    @FindBy(xpath="//div[@id='s2id_created_by']")
+    private WebElement textPersonName;
+    //xpath của Owner dropdownlist
+    @FindBy(xpath = "//div[@id='s2id_created_by']")
     private WebElement checkboxOwner;
     // Giá trị của từng Owner trong màn Add Client
-    @FindBy(xpath="//*[@id=\"select2-results-13\"]/li[1]")
+    @FindBy(xpath = "(//ul[@role='listbox'])[2]/li[1]")
     private WebElement ownerValue1;
     @FindBy(xpath = "//button[@class='btn btn-primary']")
     private WebElement btnSave;
     @FindBy(xpath = "//a[text()='Clients']")
     private WebElement clientTab;
-    @FindBy(xpath = "//span[text()='Total clients']")
-    private WebElement totalClientCard;
-    @FindBy(xpath = "//*[@id=\"client-table_filter\"]/label/input")
+    @FindBy(xpath = "(//input[@placeholder='Search'])[2]")
     private WebElement textboxSearch;
-    @FindBy(xpath = "//td[@class=' all']//a[text()=admin@demo.com']")
+    @FindBy(xpath = "//a[text()='Class28.6 Test']")
     private WebElement searchResult;
-    public ClientPageFactory(WebDriver driver){
+
+
+    public ClientPageFactory(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    public void AddClient(String personName) throws InterruptedException{
+
+    public void AddClient(String personName) throws InterruptedException {
         DashboardPage dashboard = new DashboardPage(driver);
         driver.findElement(dashboard.clientLink).click();
         btnAddClient.click();
         Thread.sleep(4000);
         checkboxPerson.click();
-        textCompanyName.sendKeys(personName);
+        textPersonName.sendKeys(personName);
         checkboxOwner.click();
+        Thread.sleep(4000);
         ownerValue1.click();
+        Thread.sleep(4000);
         btnSave.click();
-//      clientTab.click(); Khong thuc hien duoc, bao loi element intercepted
-        ((JavascriptExecutor) driver).executeAsyncScript("arguments[0].click();",clientTab);
+        //clientTab.click(); Khong thuc hien duoc, bao loi element intercepted
+        ((JavascriptExecutor) driver).executeAsyncScript("arguments[0].click();", clientTab);
         Thread.sleep(4000);
         textboxSearch.sendKeys(personName);
         Thread.sleep(4000);
