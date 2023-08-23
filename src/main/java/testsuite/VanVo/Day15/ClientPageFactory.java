@@ -50,9 +50,10 @@ public class ClientPageFactory {
         ownerValue1.click();
         Thread.sleep(4000);
         btnSave.click();
+        Thread.sleep(10000);
         //clientTab.click(); Khong thuc hien duoc, bao loi element intercepted
         ((JavascriptExecutor) driver).executeAsyncScript("arguments[0].click();", clientTab);
-        Thread.sleep(4000);
+        Thread.sleep(10000);
         textboxSearch.sendKeys(personName);
         Thread.sleep(4000);
         assertTrue(searchResult.isDisplayed());
