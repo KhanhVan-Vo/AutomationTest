@@ -1,10 +1,11 @@
 package testsuite.VanVo.Day8;
 
+import common.CommonBase;
 import org.testng.annotations.BeforeMethod;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-import automation.common.CommonBase;
+//import automation.common.CommonBase;
 
 public class PracticeLocateElement extends CommonBase {
     @BeforeMethod

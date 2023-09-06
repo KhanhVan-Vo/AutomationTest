@@ -1,5 +1,6 @@
 package testsuite.VanVo.Day12;
 
+import common.CommonBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -8,7 +9,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Day12_Homework extends automation.common.CommonBase {
+public class Day12_Homework extends CommonBase {
     @Test
     public void dropdownlist() {
         driver = initDriverTest("http://demo.seleniumeasy.com/input-form-demo.html");
@@ -24,7 +25,7 @@ public class Day12_Homework extends automation.common.CommonBase {
 
     @Test
     public void handCheckbox() {
-        driver = initChromeDriver("http://demo.seleniumeasy.com/input-form-demo.html");
+        driver = initChromeDriver();
         WebElement thisCheckbox = driver.findElement(By.xpath("//input[@value=\"yes\"]"));
         boolean check = thisCheckbox.isSelected();
         if (check == false) {

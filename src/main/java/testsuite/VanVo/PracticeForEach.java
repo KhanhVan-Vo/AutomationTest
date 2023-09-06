@@ -1,4 +1,4 @@
-package automation.testsuite.VanVo;
+package testsuite.VanVo;
 
 import java.util.Arrays;
 import java.util.Scanner;

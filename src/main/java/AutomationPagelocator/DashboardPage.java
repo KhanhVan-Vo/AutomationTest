@@ -1,12 +1,13 @@
 package AutomationPagelocator;
 
 import AutomationConstant.AccountConstant;
+import common.CommonBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 
-public class DashboardPage extends automation.common.CommonBase {
+public class DashboardPage extends CommonBase {
     public By clientLink = By.xpath("//span[text()='Clients']");
 
     public By dashboardText = By.xpath("//span[text()='Dashboard']");

@@ -1,5 +1,6 @@
 package testsuite.VanVo.Day15;
 
+import common.CommonBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -7,10 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class HandlePickerReadonly extends automation.common.CommonBase {
+public class HandlePickerReadonly extends CommonBase {
     @BeforeTest
     public void openSystemUnderTest(){
-        driver = initChromeDriver("https://techydevs.com/demos/themes/html/trizen-demo/trizen/index.html");
+        driver = initChromeDriver();
     }
     //Choose Date pickerOneway
     @Test

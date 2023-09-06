@@ -2,23 +2,31 @@ package testsuite.VanVo.Day15;
 
 import AutomationConstant.AccountConstant;
 import AutomationPagelocator.DashboardPage;
-import AutomationPagelocator.LoginPage;
+import common.CommonBase;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import testsuite.VanVo.Day14.LoginPageFactory_Day14;
 
 import static org.testng.Assert.assertTrue;
 
-public class ClientPageTest extends automation.common.CommonBase {
+public class ClientPageTest extends CommonBase {
     @BeforeTest
-    public void openApplication(){
-        driver = initChromeDriver(AccountConstant.webURL);
+    @Parameters("testNgBrowser")
+    public void openPage(String browser) {
+        setupDriver(browser);
+        driver.get(AccountConstant.webURL);
     }
+
+//    public void openApplication() {
+//        driver = initChromeDriver();
+//    }
+
     @Test
-    public void addClientSuccessfully() throws InterruptedException{
+    public void addClientSuccessfully() throws InterruptedException {
         LoginPageFactory_Day14 login = new LoginPageFactory_Day14(driver);
-        login.LoginFunction("admin@demo.com","riseDemo");
+        login.LoginFunction("admin@demo.com", "riseDemo");
         DashboardPage dashboard = new DashboardPage(driver);
         pause(4000);
         WebElement expected = driver.findElement(dashboard.dashboardText);

@@ -1,17 +1,16 @@
-package automation.common;
+package common;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -25,7 +24,7 @@ import org.testng.Assert;
 import static automation.common.TestLogger.*;
 
 public class CommonBase {
-    public WebDriver driver;
+    public static WebDriver driver;
     protected String baseUrl = "https://staging.capa.ai/";
     protected int DEFAULT_TIMEOUT = 20000;
     protected int WAIT_INTERVAL = 1000;
@@ -80,23 +79,51 @@ public class CommonBase {
         return dr;
     }
 
-    public WebDriver initChromeDriver(String URL) {
+    public static WebDriver initChromeDriver() {
         System.out.println("Launching Chrome browser...");
         ChromeOptions options = new ChromeOptions();
         System.setProperty("webdriver.chrome.driver",
                 System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.get(URL);
+//        driver.get(URL);
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         return driver;
     }
-    public WebDriver initFirefoxDriver() {
+
+    private static WebDriver initFirefoxDriver() {
         System.out.println("Launching Firefox browser...");
         System.setProperty("webdriver.gecko.driver",
-                System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
+                System.getProperty("user.dir") + "\\driver\\geckodriver.exe");
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
+        return driver;
+    }
+
+    private static WebDriver initEdgeDriver() {
+        System.out.println("Launching Microsoft Edge browser...");
+        System.setProperty("webdriver.edge.driver",
+                System.getProperty("user.dir") + "\\driver\\msedgedriver.exe");
+        driver = new EdgeDriver();
+        driver.manage().window().maximize();
+        return driver;
+    }
+
+    public WebDriver setupDriver(String browserName) {
+        switch (browserName.trim().toLowerCase()) {
+            case "chrome":
+                driver = initChromeDriver();
+                break;
+            case "firefox":
+                driver = initFirefoxDriver();
+                break;
+            case "edge":
+                driver = initEdgeDriver();
+                break;
+            default:
+                driver = initChromeDriver();
+                break;
+        }
         return driver;
     }
 

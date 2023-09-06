@@ -1,5 +1,6 @@
 package testsuite.VanVo.Day16;
 
+import common.CommonBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
@@ -8,10 +9,10 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class AlertSendKey extends automation.common.CommonBase {
+public class AlertSendKey extends CommonBase {
     @BeforeTest
     public void openPage(){
-        driver = initChromeDriver("https://demo.automationtesting.in/Alerts.html");
+        driver = initChromeDriver();
     }
     @Test
     public void TestAlert02(){

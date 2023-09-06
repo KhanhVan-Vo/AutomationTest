@@ -1,6 +1,7 @@
 package testsuite.VanVo.Day12;
 
-import automation.common.CommonBase;
+//import automation.common.CommonBase;
+import common.CommonBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class Day12_Practice extends CommonBase {
     @Test
     public void handCheckbox() {
-        driver = initChromeDriver("http://demo.seleniumeasy.com/basic-checkbox-demo.html");
+        driver = initChromeDriver();
         WebElement thisCheckbox = driver.findElement(By.xpath("//div//input[@id='isAgeSelected']"));
         boolean check = thisCheckbox.isSelected();
         if (check == false) {
@@ -24,7 +25,7 @@ public class Day12_Practice extends CommonBase {
 
     @Test
     public void isRadioSelected() {
-        driver = initChromeDriver("http://demo.seleniumeasy.com/basic-radiobutton-demo.html");
+        driver = initChromeDriver();
         WebElement checkboxMale = driver.findElement(By.xpath("(//input[@value='Male' and @type='radio'])[1]"));
         boolean isSelected = checkboxMale.isSelected();
         if (isSelected == false) {
@@ -55,7 +56,7 @@ public class Day12_Practice extends CommonBase {
     public void multiCheckbox() throws InterruptedException {
         //Cach kiem tra cac checkbox da duoc click hay chua
         //1. Lay het list checkbox
-        driver = initChromeDriver("http://demo.seleniumeasy.com/basic-checkbox-demo.html");
+        driver = initChromeDriver();
         List<WebElement> listCheckbox = driver.findElements(By.xpath("(//div[@class='panel-body'])[3]//div[@class='checkbox']//input"));
         System.out.println("Tong so luong checkbox: " + listCheckbox.size());
         // 2. Duyet List tren de lay ra tung thang checkbox

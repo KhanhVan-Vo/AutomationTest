@@ -1,6 +1,6 @@
 package testsuite.VanVo.Day14;
 
-import AutomationConstant.AccountConstant;
+import common.CommonBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-public class editInfoTest extends automation.common.CommonBase {
+public class editInfoTest extends CommonBase {
     @BeforeTest
     public void signUp(){
-        driver = initChromeDriver((AccountConstant.WebURL));
+        driver = initChromeDriver();
         SignupFactory factory = new SignupFactory(driver);
         factory.SignupFunction("Demoname", "Demoemail927071@gmail.com", "123456@", "0912344484");
     }

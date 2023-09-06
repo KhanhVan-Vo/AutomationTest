@@ -1,16 +1,16 @@
 package testsuite.VanVo.Day14;
 
-import AutomationConstant.AccountConstant;
+import common.CommonBase;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-public class signupTest extends automation.common.CommonBase {
+public class signupTest extends CommonBase {
     @BeforeTest
     public void openApplication() {
-        driver = initChromeDriver((AccountConstant.WebURL));
+        driver = initChromeDriver();
     }
 
     @Test

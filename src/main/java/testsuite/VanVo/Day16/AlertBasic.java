@@ -1,5 +1,6 @@
 package testsuite.VanVo.Day16;
 
+import common.CommonBase;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterTest;
@@ -8,10 +9,10 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class AlertBasic extends automation.common.CommonBase {
+public class AlertBasic extends CommonBase {
     @BeforeTest
     public void openPage() {
-        driver = initChromeDriver("https://demo.guru99.com/test/delete_customer.php");
+        driver = initChromeDriver();
     }
 
     @Test

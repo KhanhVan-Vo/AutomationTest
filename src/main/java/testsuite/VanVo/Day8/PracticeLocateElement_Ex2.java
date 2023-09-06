@@ -1,6 +1,6 @@
 package testsuite.VanVo.Day8;
 
-import automation.common.CommonBase;
+import common.CommonBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;

@@ -2,18 +2,21 @@ package testsuite.VanVo.Day14;
 
 import AutomationConstant.AccountConstant;
 import AutomationPagelocator.DashboardPage;
-import AutomationPagelocator.LoginPage;
+import common.CommonBase;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-public class LoginTestFactory extends automation.common.CommonBase {
+public class LoginTestFactory extends CommonBase {
     @BeforeTest
-    public void openApplication() {
-        driver = initChromeDriver(AccountConstant.webURL);
+    @Parameters("testNgBrowser")
+    public void openApplication(String browser) {
+        setupDriver(browser);
+        driver.get(AccountConstant.webURL);
     }
 
     @Test
