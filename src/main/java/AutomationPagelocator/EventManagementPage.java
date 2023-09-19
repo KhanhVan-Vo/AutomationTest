@@ -26,7 +26,7 @@ public class EventManagementPage extends CommonBase {
 	private By endDate = By.xpath("//input[@name = 'end_date']");
 	private By endTime = By.xpath("//input[@name = 'end_time']");
 	private By location = By.xpath("//input[@name = 'location']");
-	private By label = By.xpath("//input[@id = 's2id_autogen15']");
+	private By label = By.xpath("(//ul[@class= 'select2-choices'])[1]");
 	private By cilentDrop = By.id("(//span[@class = 'select2-chosen'])[2]");
 	private By onlyMeRadio = By.xpath("//input[@id = 'only_me']");
 	private By allTeamRadio = By.xpath("//input[@id = 'share_with_all']");
@@ -71,7 +71,7 @@ public class EventManagementPage extends CommonBase {
 		click(saveButton);
 	}
 
-	public void addEventSuccessfully_ShareWithAllTeam(String Title, String Description, String StartDate, String EndDate) {
+	public void addEventSuccessfully_ShareWithAllTeam(String Title, String Description, String StartDate, String EndDate, String Label) {
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		clickJavaScript(eventLink);
 		click(addEventButton);
@@ -82,7 +82,9 @@ public class EventManagementPage extends CommonBase {
 		type(endDate, EndDate);
 		//type(endTime, "10:00");
 		type(location, "Ha Noi");
+		type(label, Label);
 		clickJavaScript(allTeamRadio);
+
 		click(saveButton);
 	}
 

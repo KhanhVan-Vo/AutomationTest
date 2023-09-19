@@ -35,7 +35,7 @@ public class EventManagement extends CommonBase {
 	public void addEventSuccessfully_AllTeam() {
 		pause(10000);
 		EventManagementPage eventPage = new EventManagementPage(driver);
-		eventPage.addEventSuccessfully_ShareWithAllTeam("Title Test", "Description Test", "15-09-2023", "16-09-2023");
+		eventPage.addEventSuccessfully_ShareWithAllTeam("Title Test", "Description Test", "15-09-2023", "16-09-2023", "Label");
 		pause(10000);
 		eventPage.displayDetail();
 		pause(5000);
