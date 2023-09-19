@@ -1,5 +1,6 @@
 package testsuite.VanVo.Day12;
 
+import AutomationConstant.AccountConstant;
 import common.CommonBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -25,7 +26,7 @@ public class Day12_Homework extends CommonBase {
 
     @Test
     public void handCheckbox() {
-        driver = initChromeDriver();
+        driver = initChromeDriver(AccountConstant.webURL);
         WebElement thisCheckbox = driver.findElement(By.xpath("//input[@value=\"yes\"]"));
         boolean check = thisCheckbox.isSelected();
         if (check == false) {

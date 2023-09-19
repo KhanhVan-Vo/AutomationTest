@@ -1,5 +1,6 @@
 package testsuite.VanVo.Day13;
 
+import AutomationConstant.AccountConstant;
 import AutomationPagelocator.DashboardPage;
 import AutomationPagelocator.LoginPage;
 import common.CommonBase;
@@ -12,7 +13,7 @@ import static org.testng.Assert.assertTrue;
 public class LoginTest extends CommonBase {
     @BeforeTest
     public void openPage() {
-        driver = initChromeDriver();
+        driver = initChromeDriver(AccountConstant.webURL);
     }
 
     @Test

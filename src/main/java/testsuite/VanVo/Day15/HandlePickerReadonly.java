@@ -1,5 +1,6 @@
 package testsuite.VanVo.Day15;
 
+import AutomationConstant.AccountConstant;
 import common.CommonBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 public class HandlePickerReadonly extends CommonBase {
     @BeforeTest
     public void openSystemUnderTest(){
-        driver = initChromeDriver();
+        driver = initChromeDriver(AccountConstant.webURL);
     }
     //Choose Date pickerOneway
     @Test

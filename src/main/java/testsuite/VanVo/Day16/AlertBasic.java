@@ -1,5 +1,6 @@
 package testsuite.VanVo.Day16;
 
+import AutomationConstant.AccountConstant;
 import common.CommonBase;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,7 +13,7 @@ import static org.testng.Assert.assertEquals;
 public class AlertBasic extends CommonBase {
     @BeforeTest
     public void openPage() {
-        driver = initChromeDriver();
+        driver = initChromeDriver(AccountConstant.webURL);
     }
 
     @Test

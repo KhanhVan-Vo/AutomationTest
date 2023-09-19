@@ -1,13 +1,11 @@
 package common;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import AutomationConstant.AccountConstant;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -59,15 +57,15 @@ public class CommonBase {
         } else if ("safari".equals(browser)) {
             dr = new SafariDriver();
         } else {
-            if (proName != null && proName != "") {
-                FirefoxProfile ffprofile = new FirefoxProfile(new File(proName));
-                dr = new FirefoxDriver(ffprofile);
-            } else {
-                FirefoxProfile fxProfile = new FirefoxProfile();
-                File browserAppPath = new File("/usr/bin/geckodriver");
-                FirefoxBinary ffBin = new FirefoxBinary(browserAppPath);
-                dr = new FirefoxDriver(ffBin, fxProfile);
-            }
+//            if (proName != null && proName != "") {
+//                FirefoxProfile ffprofile = new FirefoxProfile(new File(proName));
+//                dr = new FirefoxDriver(ffprofile);
+//            } else {
+//                FirefoxProfile fxProfile = new FirefoxProfile();
+//                File browserAppPath = new File("/usr/bin/geckodriver");
+//                FirefoxBinary ffBin = new FirefoxBinary(browserAppPath);
+//                dr = new FirefoxDriver(ffBin, fxProfile);
+//            }
         }
         if (url2 != "" && url2 != null) {
             dr.get(url2);
@@ -78,8 +76,12 @@ public class CommonBase {
         dr.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         return dr;
     }
-
-    public static WebDriver initChromeDriver() {
+    public void type(By locator, String value)
+    {
+        WebElement element = getElementPresentDOM(locator);
+        element.sendKeys(value);
+    }
+    public static WebDriver initChromeDriver(String webURL) {
         System.out.println("Launching Chrome browser...");
         ChromeOptions options = new ChromeOptions();
         System.setProperty("webdriver.chrome.driver",
@@ -112,7 +114,7 @@ public class CommonBase {
     public WebDriver setupDriver(String browserName) {
         switch (browserName.trim().toLowerCase()) {
             case "chrome":
-                driver = initChromeDriver();
+                driver = initChromeDriver(AccountConstant.webURL);
                 break;
             case "firefox":
                 driver = initFirefoxDriver();
@@ -121,7 +123,7 @@ public class CommonBase {
                 driver = initEdgeDriver();
                 break;
             default:
-                driver = initChromeDriver();
+                driver = initChromeDriver(AccountConstant.webURL);
                 break;
         }
         return driver;
@@ -145,14 +147,13 @@ public class CommonBase {
      * click on an element
      */
 
-    public void click(Object locator) {
-        By xPath = locator instanceof By ? (By) locator : By.xpath(locator.toString());
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement elementClick = wait.until(ExpectedConditions
-                .elementToBeClickable(xPath));
-        elementClick.click();
+    public void click(By locator)
+    {
+        WebElement element = getElementPresentDOM(locator);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(initWaitTime));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+        element.click();
     }
-
     /**
      * get absolute path of file
      *
@@ -297,5 +298,19 @@ public class CommonBase {
         }
         return a;
     }
+    public int initWaitTime = 10;
+    public WebElement getElementPresentDOM(By locator)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(initWaitTime));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator);
+    }
+
+    public void clickJavaScript(By locator)
+    {
+        WebElement element = getElementPresentDOM(locator);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+
 
 }
