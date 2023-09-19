@@ -17,7 +17,7 @@ public class EventPaginationTest {
 
         // Lấy tháng hiện tại
         String currentMonth = getCurrentMonth();
-        System.out.println("Tháng hiện tại: " + currentMonth);
+        System.out.println("Tháng hiện i: " + currentMonth);
 
         // Lặp để kiểm tra next và previous trang
         for (int i = 0; i < 2; i++) {
