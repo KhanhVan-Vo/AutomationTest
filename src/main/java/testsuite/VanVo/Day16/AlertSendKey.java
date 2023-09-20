@@ -30,9 +30,9 @@ public class AlertSendKey extends CommonBase {
         pause(2000);
     }
 
-    private WebElement getElementPresentDOM(By demo1) {
-        return null;
-    }
+//    private WebElement getElementPresentDOM(By demo1) {
+//        return null;
+//    }
 
     @AfterTest
     public void closePage(){

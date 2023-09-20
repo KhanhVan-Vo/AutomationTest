@@ -88,7 +88,7 @@ public class CommonBase {
                 System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-//        driver.get(URL);
+        driver.get(webURL);
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         return driver;
     }
