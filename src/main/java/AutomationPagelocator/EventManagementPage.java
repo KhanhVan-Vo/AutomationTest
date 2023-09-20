@@ -3,12 +3,20 @@ package AutomationPagelocator;
 import common.CommonBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+//import com.datatorrent.lib.appdata.schemas.DimensionalConfigurationSchema.Key;
+//
+//import automation.common.CommonBase;
+
+import static org.testng.Assert.assertEquals;
+
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ByXPath;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.JavascriptExecutor;
 
 public class EventManagementPage extends CommonBase {
 	private By eventLink = By.xpath("(//span[@class = 'menu-text '])[2]");
@@ -26,7 +34,7 @@ public class EventManagementPage extends CommonBase {
 	private By endDate = By.xpath("//input[@name = 'end_date']");
 	private By endTime = By.xpath("//input[@name = 'end_time']");
 	private By location = By.xpath("//input[@name = 'location']");
-	private By label = By.xpath("(//ul[@class= 'select2-choices'])[1]");
+	private By label = By.xpath("//input[@id = 's2id_autogen15']");
 	private By cilentDrop = By.id("(//span[@class = 'select2-chosen'])[2]");
 	private By onlyMeRadio = By.xpath("//input[@id = 'only_me']");
 	private By allTeamRadio = By.xpath("//input[@id = 'share_with_all']");
@@ -54,10 +62,7 @@ public class EventManagementPage extends CommonBase {
 	}
 
 	public void addEventSuccessfully_ShareWithOnlyMe(String Title, String Description, String StartDate, String EndDate, String Location, String Label) {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-		js.executeScript(eventLink+".click()");
 		clickJavaScript(eventLink);
 		click(addEventButton);
 		type(eventTitle, Title);
@@ -65,8 +70,8 @@ public class EventManagementPage extends CommonBase {
 		type(eventDescription, Description);
 		type(startDate, StartDate);
 		type(endDate, EndDate);
-		type(label, Label);
 		type(location, Location);
+		type(label, Label);
 		//type(cilentDrop, Client);
 		//driver.findElement(cilentDrop).sendKeys(Keys.TAB);
 		click(saveButton);
@@ -84,7 +89,6 @@ public class EventManagementPage extends CommonBase {
 		//type(endTime, "10:00");
 		type(location, "Ha Noi");
 		clickJavaScript(allTeamRadio);
-
 		click(saveButton);
 	}
 

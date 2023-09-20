@@ -2,13 +2,15 @@ package AutomationPagelocator;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+
 import java.util.concurrent.TimeUnit;
+
 import AutomationConstant.AccountConstant;
 import common.CommonBase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 
 public class EventManagement extends CommonBase {
 	@BeforeTest
@@ -17,7 +19,7 @@ public class EventManagement extends CommonBase {
 		LoginPage login = new LoginPage(driver);
 		login.LoginFunction("admin@demo.com", "riseDemo");
 	}
-
+	
 	@Test
 	public void addEventSuccessfully_OnlyMe() {
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
@@ -30,7 +32,8 @@ public class EventManagement extends CommonBase {
 		String actualText = element.getText();
 		assertEquals(actualText, "Title Test");
 	}
-	
+
+
 	@Test
 	public void addEventSuccessfully_AllTeam() {
 		pause(10000);
