@@ -26,4 +26,17 @@ public class Pagination {
         System.out.println("currentMonthAsString: " + currentMonth);
         return currentMonth;
     }
+    // 1. Lấy tháng trước từ tháng hiện tại theo định dạng "October 2023"
+    public String getPrevious1MonthFromCurrentMonth1() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("MMMM yyyy");
+        calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH));
+        String currentMonth = df.format(calendar.getTime());
+        System.out.println("current Month: " + currentMonth);
+
+        calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
+        String nextMonth = df.format(calendar.getTime());
+        System.out.println("NextMonth from curent month: " + nextMonth);
+        return nextMonth;
+    }
 }

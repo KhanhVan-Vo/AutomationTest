@@ -5,6 +5,7 @@ import AutomationPagelocator.DashboardPage;
 import common.CommonBase;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import testsuite.VanVo.Day14.LoginPageFactory_Day14;
@@ -14,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 public class ClientPageTest extends CommonBase {
     @BeforeTest
     @Parameters("testNgBrowser")
-    public void openPage(String browser) {
+    public void initDriver(@Optional("chrome") String browser) {
         setupDriver(browser);
         driver.get(AccountConstant.webURL);
     }

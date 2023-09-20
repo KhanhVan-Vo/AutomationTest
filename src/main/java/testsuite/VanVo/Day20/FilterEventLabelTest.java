@@ -6,7 +6,9 @@ import AutomationPagelocator.LabelFactory;
 import AutomationPagelocator.LoginPage;
 import common.CommonBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -17,18 +19,25 @@ public class FilterEventLabelTest extends CommonBase {
     @BeforeTest
     public void openPage() {
         driver = initChromeDriver(AccountConstant.webURL);
-        LoginPage login = new LoginPage(driver);
-        login.LoginFunction("admin@demo.com", "riseDemo");
+//        LoginPage login = new LoginPage(driver);
+//        login.LoginFunction("admin@demo.com", "riseDemo");
+        LabelFactory factory = new LabelFactory(driver);
+        factory.loginPage("admin@demo.com", "riseDemo");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//span[text()='Events']")));
     }
 
-    @Test
+    @Test (priority = 1)
     public void FilterEventLabelOnCurrentMonth() {
         //Add label
-        LabelFactory addLabel = new LabelFactory(driver);
-        addLabel.addLabelOnlyName("Label test");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//a[@title='Manage labels']")));
+        LabelFactory factory = new LabelFactory(driver);
+        factory.addLabelOnlyName("Label test");
+        pause(2000);
+        click(By.xpath("(//button[normalize-space()='Close'])[1]"));
         //Add Event
-        EventManagementPage addEvent = new EventManagementPage(driver);
-        addEvent.addEventSuccessfully_ShareWithAllTeam("Tilte", "Description Test", "20-9-2023", "20-9-2023", "Label test");
+        pause(2000);
+        EventManagementPage eventPage = new EventManagementPage(driver);
+        eventPage.addEventSuccessfully_ShareWithOnlyMe("Title Test", "Description Test", "15-09-2023", "16-09-2023", "Ha Noi", "Label test");
         //Refresh web
         driver.get("https://rise.fairsketch.com/events#");
         driver.navigate().refresh();
@@ -38,19 +47,20 @@ public class FilterEventLabelTest extends CommonBase {
         filterLabel_1.FilterEventLabel("Label test");
         WebElement element = driver.findElement(filterLabel_1.eventOnCurrentMonth);
         String actualText = element.getText();
-        assertEquals(actualText, "Title");
+        assertEquals(actualText, "Title test");
     }
 
-    @Test
+    @Test (priority = 2)
     public void FilterEventLabelNotOnCurrentMonth() {
-        //Add label
-        LabelFactory addLabel = new LabelFactory(driver);
-        addLabel.addLabelOnlyName("Label test 2");
-        FilterEventLabel filterLabel_2 = new FilterEventLabel(driver);
-        filterLabel_2.FilterEventLabel("Label test 2");
+        //Add Label
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",driver.findElement(By.xpath("//a[@title='Manage labels']")));
+        LabelFactory factory = new LabelFactory(driver);
+        factory.addLabelOnlyName("Label test 2");
+        pause(2000);
+        click(By.xpath("(//button[normalize-space()='Close'])[1]"));
         //Add Event
         EventManagementPage addEvent = new EventManagementPage(driver);
-        addEvent.addEventSuccessfully_ShareWithAllTeam("Tilte 2", "Description Test", "20-10-2023", "20-10-2023", "Label test 2");
+        addEvent.addEventSuccessfully_ShareWithOnlyMe("Title Test", "Description Test", "15-09-2023", "16-09-2023", "Ha Noi", "Label test");
         //Refresh web
         driver.get("https://rise.fairsketch.com/events#");
         driver.navigate().refresh();

@@ -14,7 +14,7 @@ import static org.testng.Assert.assertEquals;
 
 public class FilterEventLabel extends CommonBase {
     private By eventLink = By.xpath("(//span[@class = 'menu-text '])[1]");
-    public By filterEventLabel = By.xpath("//div[@class='select2-search']/parent::div");
+    public By filterEventLabel = By.xpath("//*[@id=\"s2id_event-labels-dropdown\"]/a");
     public By selectLabel = By.xpath("//div[@id='select2-result-label-27']");
     public By eventOnCurrentMonth = By.xpath("//td[@data-date='2023-09-20']");
     public By eventOnNextMonth = By.xpath("//td[@data-date='2023-10-20']");
@@ -31,6 +31,7 @@ public class FilterEventLabel extends CommonBase {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         js.executeScript(eventLink + ".click()");
         clickJavaScript(eventLink);
+        pause(2000);
         type(filterEventLabel, Label);
         pause(5000);
     }

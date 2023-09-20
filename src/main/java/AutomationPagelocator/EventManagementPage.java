@@ -53,7 +53,7 @@ public class EventManagementPage extends CommonBase {
 		this.driver = _driver;
 	}
 
-	public void addEventSuccessfully_ShareWithOnlyMe(String Title, String Description, String StartDate, String EndDate, String Location) {
+	public void addEventSuccessfully_ShareWithOnlyMe(String Title, String Description, String StartDate, String EndDate, String Location, String Label) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
@@ -65,13 +65,14 @@ public class EventManagementPage extends CommonBase {
 		type(eventDescription, Description);
 		type(startDate, StartDate);
 		type(endDate, EndDate);
+		type(label, Label);
 		type(location, Location);
 		//type(cilentDrop, Client);
 		//driver.findElement(cilentDrop).sendKeys(Keys.TAB);
 		click(saveButton);
 	}
 
-	public void addEventSuccessfully_ShareWithAllTeam(String Title, String Description, String StartDate, String EndDate, String Label) {
+	public void addEventSuccessfully_ShareWithAllTeam(String Title, String Description, String StartDate, String EndDate) {
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		clickJavaScript(eventLink);
 		click(addEventButton);
@@ -82,7 +83,6 @@ public class EventManagementPage extends CommonBase {
 		type(endDate, EndDate);
 		//type(endTime, "10:00");
 		type(location, "Ha Noi");
-		type(label, Label);
 		clickJavaScript(allTeamRadio);
 
 		click(saveButton);
