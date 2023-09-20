@@ -63,7 +63,7 @@ public class PaginationTest extends CommonBase {
 
     @Test(priority = 1)
     public void NextPage() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='fc-icon fc-icon-chevron-right']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.xpath("//button[@class='fc-next-button fc-button fc-button-primary']")));
         click(By.xpath("//h2[@class='fc-toolbar-title']"));
         WebElement element = driver.findElement(By.xpath("//h2[@class='fc-toolbar-title']"));
         String actualtext = element.getText();
@@ -73,7 +73,7 @@ public class PaginationTest extends CommonBase {
 
     @Test(priority = 2)
     public void PreviousPage() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.xpath("//span[@class='fc-icon fc-icon-chevron-right']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.xpath("//button[@class='fc-prev-button fc-button fc-button-primary']")));
         click(By.xpath("//h2[@class='fc-toolbar-title']"));
         WebElement element = driver.findElement(By.xpath("//h2[@class='fc-toolbar-title']"));
         String actualText = element.getText();
